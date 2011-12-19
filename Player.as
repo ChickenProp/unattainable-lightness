@@ -35,11 +35,32 @@ public class Player extends Movable {
 		bgSfx.loop();
 	}
 
+	public var lastmousex:int = -1;
+	public var lastmousey:int = -1;
+	public var moved:Boolean = false;
 	override public function update () : void {
 		super.update();
 
-		x = FP.clamp(Input.mouseX, 40+radius, 440-radius);
-		y = FP.clamp(Input.mouseY, 40+radius, 440-radius);
+		if (Input.mouseX == 0 && Input.mouseY == 0 && !moved)
+		{
+			x = 240;
+			y = 240;
+		}
+		else if (Input.mouseX != lastmousex
+			 || Input.mouseY != lastmousey)
+		{
+			x = FP.clamp(Input.mouseX, 40+radius, 440-radius);
+			y = FP.clamp(Input.mouseY, 40+radius, 440-radius);
+			moved = true;
+		}
+		else {
+			var dx:int = int(Input.check(Key.RIGHT)) - int(Input.check(Key.LEFT))
+			var dy:int = int(Input.check(Key.DOWN)) - int(Input.check(Key.UP));
+			accel(dx*3, dy*3);
+			moved = true;
+		}
+		lastmousex = Input.mouseX;
+		lastmousey = Input.mouseY;
 
 		var fear:Number = 0;
 		var moths:Array = [];

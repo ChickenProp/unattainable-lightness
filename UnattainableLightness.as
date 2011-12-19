@@ -13,5 +13,11 @@ public class UnattainableLightness extends Engine {
         override public function init():void {
                 FP.world = new Game;
         }
+
+	override public function update () : void {
+		super.update();
+		if (Input.pressed(Key.P))
+			FP.world.active = ! FP.world.active;
+	}
 }
 }
