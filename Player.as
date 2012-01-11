@@ -15,6 +15,7 @@ public class Player extends Movable {
 	public var burner:Burner;
 	public var burnPower:Number = 0.5;
 	public var courage:int = 0;
+	public var released:Boolean = false;
 
 	public function Player () {
 		x = 240;
@@ -84,9 +85,13 @@ public class Player extends Movable {
 			if (game.won)
 				FP.world = new Game;
 			else if (game.started)
-				burn();
+				released && burn();
 			else
 				game.start();
+		}
+		else {
+			if (game.started)
+				released = true;
 		}
 
 		if (burner)
