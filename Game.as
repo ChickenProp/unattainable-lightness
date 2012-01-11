@@ -29,8 +29,6 @@ public class Game extends World {
 			addSleeper(10, i);
 		for (var i:int = 10; i <= 470; i += 20)
 			addSleeper(i, 470);
-
-		Input.mouseCursor = "hide";
 	}
 
 	public function addSleeper(x:Number, y:Number) : void {
@@ -79,7 +77,7 @@ public class Game extends World {
 		if (sleepers.length == 0)
 			return;
 
-		newWaveSfx.play();
+		newWaveSfx.play(0.2);
 		waveStarted = frame;
 		var num:int = waveSizes.shift() || 5;
 
