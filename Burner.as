@@ -48,7 +48,7 @@ public class Burner extends Movable {
 
 	public function done () : void {
 		var score:String = (kills.length*10).toString();
-		game.score += kills.length*10;
+		game.score += kills.length * kills.length * 10;
 		for (var i:int = 0; i < kills.length; i++) {
 			var p:vec = kills[i];
 			var t:TextParticle = new TextParticle(p.x, p.y, score);
